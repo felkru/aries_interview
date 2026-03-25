@@ -27,11 +27,11 @@
   - [x] `AnalysisView.jsx` + `SentimentBadge.jsx`
   - [x] `ResultsTable.jsx`
   - [x] `Spinner.jsx` + loading/error states
-- [ ] **Phase 3: Deploy**
-  - [ ] Verify locally with `vercel dev`
-  - [ ] Push to `main` → Vercel auto-deploys
-  - [ ] Test production URL end-to-end
-  - [ ] Update README with setup instructions
+- [x] **Phase 3: Deploy**
+  - [x] Verify locally with `vercel dev`
+  - [x] Push to `main` → Vercel auto-deploys
+  - [x] Test production URL end-to-end
+  - [x] Update README with setup instructions
 
 ---
 
