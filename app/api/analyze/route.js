@@ -44,7 +44,7 @@ export async function POST(request) {
     const headerList = await headers();
     const ip = headerList.get('x-forwarded-for') || '127.0.0.1';
     
-    const limiter = await rateLimit(ip);
+    const limiter = await rateLimit(ip, 'analyze');
     if (!limiter.success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
     }
