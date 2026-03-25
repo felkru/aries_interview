@@ -1,61 +1,71 @@
-This is a markdown version of the assignment pdf for faster agent access.
+This is a markdown version of the assignment PDF to simplify agent useage
 
 ---
 
-# **Case Study: Smart Reviewer**
+# Case Study: Smart Reviewer
 
 **Estimated Duration:** 2–4 hours  
-**Tech Stack:** Ruby on Rails or any JavaScript framework (e.g., React, Vue, Next.js)
+**Tech Stack:** RoR or any JS frameworks  
+**Objective:** Build a single-page app that fetches real-time news articles, uses GenAI to generate a summary and sentiment analysis, and stores the results in a MongoDB collection.
 
-## **Objective**
+---
 
-Build a single-page application (SPA) that fetches real-time news articles, uses Generative AI to generate a summary and sentiment analysis, and stores the results in a MongoDB collection.
+## Overview
 
-## **Overview**
+You are tasked with building Smart Reviewer, a single-page web app that allows users to:
 
-You are tasked with building **Smart Reviewer**, a web application that allows users to:
+1. Search for recent news articles using a public API.
+2. Select an article and trigger:
+   - A summary using a GenAI API.
+   - A sentiment score (positive/neutral/negative etc).
+3. Store the results in a MongoDB database.
+4. Display all results and their analysis clearly to the user.
 
-1. **Search** for recent news articles using a public API.
-2. **Select** an article to trigger:
-   - A summary generated via a GenAI API.
-   - A sentiment score (e.g., positive, neutral, negative).
-3. **Store** the results in a MongoDB database.
-4. **Display** all analyzed results clearly in a dashboard or table.
-
-## **Project Goals**
+## Project Goals
 
 This case study assesses your ability to:
 
-- Build a clean, responsive frontend.
-- Integrate with external third-party APIs.
-- Implement GenAI functionality.
-- Manage data persistence with MongoDB.
-- Handle the request lifecycle (loading, error, and success states).
+- Build a clean, responsive frontend in React.
+- Integrate with external APIs.
+- Use a GenAI API.
+- Store and retrieve data from MongoDB.
+- Handle request lifecycle (loading, error, success states).
 
-## **Technical Requirements**
+---
 
-### **1\. News API**
+## APIs You'll Use
 
-Use a service such as **GNews.io** (Free Tier: 100 requests/day) or any other news/RSS feed. The design of how users select or request articles is up to you, but the flow should be intuitive and purposeful.
+### 1. News API
 
-### **2\. GenAI Summary API**
+E.g., [GNews.io](https://gnews.io/) (Free Tier: 100 requests/day) or any news/general RSS feed you’d like to use.  
+_Note: How the user selects, requests, or does not select an article is up to you to design. But the app should be useful and not arbitrary._
 
-Use any free-tier API from a GenAI provider (e.g., OpenAI, Gemini, Anthropic). Assessment is based on integration rather than the specific model choice or output quality.
+### 2. GenAI Summary API
 
-### **3\. Sentiment Analysis**
+Use any of the free tier APIs from any GenAI provider. You won't be judged on model selection or quality.
 
-Develop a strategy for sentiment analysis. Aim to minimize the number of API calls made (e.g., by requesting the summary and sentiment in a single prompt).
+### 3. Sentiment Analysis
 
-### **4\. MongoDB Storage**
+Come up with a strategy that uses sentiment analysis; minimize the calls you make.
 
-The application must store the summarized articles and their analysis. These results must be displayed in a table or list for the user to review.
+---
 
-## **Time Management & Infrastructure**
+## MongoDB Requirement
 
-- **Timeline:** Aim to complete the core requirements within 2–4 hours. Additional polishing is welcome but not required.
-- **Deployment:** You may host the app on a free-tier solution (like Vercel, Render, or Railway) or provide a clear README with installation instructions.
-- **Notes:** If there are features or improvements you would have implemented with more time, please include them in your submission notes.
+Store and display a table that is the result of articles that have been summarized.
 
-## **Submission & Support**
+## Time Management
 
-If you have questions during the process, please reach out to the contact provided in the original brief. We look forward to seeing your approach to architecture and execution under a short time constraint.
+Try to complete the task in 2–4 hours. You're welcome to polish it further if you'd like to showcase additional skills, but it's not expected.
+
+## Infrastructure
+
+You can either host the app on free-tier solutions or provide an installation README which we will follow.  
+If there's anything extra you would have done but didn't have time for, you can include it in the notes to `mason@aries.global`.
+
+---
+
+## Good Luck!
+
+We're excited to see how you approach the problem, balance architecture, and execute cleanly under a short time constraint.  
+Please reach out to `mason@aries.global` for questions.

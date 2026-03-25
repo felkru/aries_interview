@@ -16,3 +16,8 @@ If you don't know where to start reading I suggest looking at the src/main.tsx f
 
 1. Sign up for a MongoDB Atlas, OpenAI and GNews API key and store the keys in .env (look at .env.example for how to do it)
 2.
+
+## Best Practices
+
+- Stick to docs/SKILLS_CLI.md when using/adding skills
+- If you do work yourself, please document it in a work_log file (e.g. work_log/{your_name}s_work.md)
