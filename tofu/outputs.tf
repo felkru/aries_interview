@@ -1,5 +1,5 @@
 output "project_id" {
-  value = mongodbatlas_project.smart_reviewer.id
+  value = data.mongodbatlas_project.smart_reviewer.id
 }
 
 output "cluster_connection_string" {

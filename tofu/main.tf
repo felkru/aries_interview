@@ -11,13 +11,12 @@ provider "mongodbatlas" {
   private_key = var.atlas_private_key
 }
 
-resource "mongodbatlas_project" "smart_reviewer" {
-  name   = var.project_name
-  org_id = var.atlas_org_id
+data "mongodbatlas_project" "smart_reviewer" {
+  name = var.project_name
 }
 
 resource "mongodbatlas_cluster" "cluster" {
-  project_id   = mongodbatlas_project.smart_reviewer.id
+  project_id   = data.mongodbatlas_project.smart_reviewer.id
   name         = var.cluster_name
   cluster_type = "REPLICASET"
 
@@ -30,7 +29,7 @@ resource "mongodbatlas_cluster" "cluster" {
 resource "mongodbatlas_database_user" "app_user" {
   username           = var.db_username
   password           = var.db_password
-  project_id         = mongodbatlas_project.smart_reviewer.id
+  project_id         = data.mongodbatlas_project.smart_reviewer.id
   auth_database_name = "admin"
 
   roles {
@@ -40,7 +39,7 @@ resource "mongodbatlas_database_user" "app_user" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "vercel_access" {
-  project_id = mongodbatlas_project.smart_reviewer.id
+  project_id = data.mongodbatlas_project.smart_reviewer.id
   cidr_block = "0.0.0.0/0"
   comment    = "Production Vercel Access"
 }

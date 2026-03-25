@@ -19,7 +19,8 @@
 - 17:00 - 17:10: Let Opus Fix issues from UX audit
 - 17:10 - 17:20: Suggest UI improvements (sticky header, quick search chips)
 - 17:20 - 17:55: Reliability testing, Fix CLS/layout shifting and working through bugs
-- 18:00 - 18:10: Deployment
+- 18:00 - 18:20: Deployment debugging
+- 19:44 - 20:00: Fix security issues
 
 ## What I still want to do
 
@@ -28,7 +29,8 @@
 - [x] Reliability testing
 - [x] Make sure analysis are always in english, check using dictionary check and repeat if AI output doesn't pass that check, remove the old analysis from the db
 - [x] Make sure that article contents are actually in AI context, when performing the summarization, flush all cached and stored ai responses
-- [ ] Deployment (Phase 3)
+- [x] Deployment (Phase 3)
 - [ ] Security Testing (deployment on private url first, then security testing, then release on public url)
 - [ ] Update documentation (with full pages on at least api reference, prompt/context/AI efficiency engineering, a page showcasing all the components and their features, the architecture, getting started and the approach used for web scraping)
 - [ ] Fix issue with OpenTofu during CI/CD
+- [ ] Have manus try to create an account hisself and deploy a second version somewhere

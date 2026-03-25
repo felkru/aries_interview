@@ -12,7 +12,9 @@ export default function ResultsTable() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/results");
+      const res = await fetch("/api/results", {
+        headers: { "x-api-key": process.env.NEXT_PUBLIC_API_KEY }
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to fetch results");
       setResults(data.results || []);

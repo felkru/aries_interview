@@ -15,7 +15,10 @@ export default function ArticleCard({ article }) {
     try {
       const res = await fetch("/api/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+        },
         body: JSON.stringify({ article, force: review !== null }),
       });
       const data = await res.json();

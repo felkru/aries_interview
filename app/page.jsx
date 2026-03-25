@@ -32,7 +32,9 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchCount() {
       try {
-        const res = await fetch("/api/results?count=1");
+        const res = await fetch("/api/results?count=1", {
+          headers: { "x-api-key": process.env.NEXT_PUBLIC_API_KEY }
+        });
         const data = await res.json();
         if (res.ok && data.results) {
           setResultCount(data.results.length);
@@ -68,7 +70,9 @@ export default function HomePage() {
       setActiveTopic(null);
     }
     try {
-      const res = await fetch(`/api/news?q=${encodeURIComponent(query)}`);
+      const res = await fetch(`/api/news?q=${encodeURIComponent(query)}`, {
+        headers: { "x-api-key": process.env.NEXT_PUBLIC_API_KEY }
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to fetch news");
       setArticles(data.articles || []);
@@ -144,7 +148,9 @@ export default function HomePage() {
                 onClick={() => {
                   setHasInteracted(true);
                   setActiveTab("results");
-                  fetch("/api/results?count=1")
+                  fetch("/api/results?count=1", {
+                    headers: { "x-api-key": process.env.NEXT_PUBLIC_API_KEY }
+                  })
                     .then((r) => r.json())
                     .then((d) => d.results && setResultCount(d.results.length))
                     .catch(() => {});
