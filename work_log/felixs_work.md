@@ -7,9 +7,10 @@
 - 11:45 - 12:00: Install Atlas Management CLI and add relevant Skills
 - 12:00 - 12:20: Start Skills Security Review, add md version of pdf task, set up Vercel CLI
 - 12:25 - 12:30: Short break before I start implementation to reflect and relax
-- 12:45 - 13:45: Iterate on visual Implementation Plan with Antigravity (Model Claude Opus 4.5)
-- 13:40 - 13:45: Add Test Driven Development Skill
+- 12:45 - 13:55: Iterate on visual Implementation Plan with Antigravity (Model Claude Opus 4.5), Add Test Driven Development Skill
+- 13:55 - 14:10: Start with Phase 0 (Gemini 3.1 Pro (Low)), monitor agent while working
 
 ## What I still want to do
 
 - Use <https://stitch.withgoogle.com/> to understand it by redesigning the frontend after claude is done with the first iteration
+- Add batch requests for all articles that come up after the initial api request

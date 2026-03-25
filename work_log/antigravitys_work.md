@@ -8,3 +8,4 @@
 - 13:10 - 13:30: Added GitHub CI/CD, detailed prompt engineering section, renamed reviews→results, updated skill with mandatory prompt docs.
 - 13:30 - 13:44: Created `docs/IMPLEMENTATION.md`, updated `architecture.html` for Next.js, moved it to `docs/`, pushed to GitHub, verified rendering.
 - 13:50 - 13:55: Moved TDD skill and its anti-patterns reference to `.agents/skills/test-driven-development/`, registered in `skills.json` and synced symlinks.
+- 13:57 - 14:10: Setup Phase 0, ran create-next-app, linked to Vercel, created Atlas cluster, initialized env vars, and verified `.gitignore` excludes sensitive files like `.env.local` and `.vercel`.

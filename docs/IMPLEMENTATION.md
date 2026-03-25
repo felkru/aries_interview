@@ -7,12 +7,12 @@
 
 ## Todo List
 
-- [ ] **Phase 0: Setup**
-  - [ ] Scaffold Next.js project (`npx create-next-app@latest`)
-  - [ ] Atlas CLI: create cluster + get connection string
-  - [ ] Create `.env.local` with all 3 keys
-  - [ ] `npm install openai zod mongodb`
-  - [ ] `vercel link` + add env vars
+- [x] **Phase 0: Setup**
+  - [x] Scaffold Next.js project (`npx create-next-app@latest`)
+  - [x] Atlas CLI: create cluster + get connection string
+  - [x] Create `.env.local` with all 3 keys
+  - [x] `npm install openai zod mongodb`
+  - [x] `vercel link` + add env vars
 - [ ] **Phase 1: Route Handlers**
   - [ ] `lib/mongodb.js` — MongoClient singleton
   - [ ] `lib/openai.js` — analyzeArticle with zodResponseFormat
