@@ -44,7 +44,7 @@ An intelligent news sentiment analysis platform that helps users understand the 
 
    ```bash
    git clone https://github.com/felkru/aries_interview.git
-   cd aries_interview/smart-reviewer
+   cd aries_interview
    ```
 
 2. **Install dependencies**:
@@ -55,7 +55,7 @@ An intelligent news sentiment analysis platform that helps users understand the 
 
 3. **Environment Variables**:
 
-   Create a `.env.local` file in the `smart-reviewer` directory:
+   Create a `.env.local` file in the root directory:
 
    ```bash
    MONGODB_URI=your_mongodb_uri
@@ -86,7 +86,7 @@ To deploy manually or via CI, you'll need the following environment variables (o
 
 ## 📖 Project Structure
 
-- `smart-reviewer/`: The Next.js web application.
+- `app/`, `components/`, `lib/`, `public/`: The core Next.js web application.
 - `tofu/`: OpenTofu configurations for MongoDB Atlas.
 - `docs/`: Architecture diagrams and implementation details.
 - `work_log/`: Chronological log of agent activity.

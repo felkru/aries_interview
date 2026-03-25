@@ -128,7 +128,6 @@ sequenceDiagram
 ## Target File Tree
 
 ```text
-smart-reviewer/
 ├── package.json                 # next, react, openai, zod, mongodb
 ├── next.config.js               # [NEW]
 ├── .env.local                   # MONGODB_URI, OPENAI_API_KEY, GNEWS_KEY
