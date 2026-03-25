@@ -8,9 +8,10 @@ export default function AnalysisView({ review }) {
   return (
     <div className="animate-fade-in mt-4 p-5 rounded-xl bg-bg-secondary border border-border space-y-3">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <h4 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+        {/* Fix 4: h4 → h3 for proper heading hierarchy */}
+        <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider font-heading">
           AI Analysis
-        </h4>
+        </h3>
         <SentimentBadge
           sentiment={review.sentiment}
           confidence={review.confidence}

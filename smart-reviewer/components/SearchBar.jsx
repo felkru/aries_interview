@@ -14,9 +14,12 @@ export default function SearchBar({ onSearch, isLoading }) {
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full max-w-2xl mx-auto" id="search-form">
+      {/* Fix 3: Visually-hidden label for screen readers */}
+      <label htmlFor="search-input" className="sr-only">Search news topics</label>
+
       <div className="relative group">
         {/* Glow effect behind */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 to-purple-500/20 rounded-2xl opacity-0 group-focus-within:opacity-100 blur-lg transition-opacity duration-500" />
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/12 to-[#6a9bcc]/12 rounded-2xl opacity-0 group-focus-within:opacity-100 blur-lg transition-opacity duration-500" />
 
         <div className="relative flex items-center">
           <input
@@ -26,13 +29,15 @@ export default function SearchBar({ onSearch, isLoading }) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder='Search news topics (e.g. "AI regulation")'
             disabled={isLoading}
-            className="w-full py-4 pl-5 pr-14 rounded-2xl bg-bg-input text-text-primary placeholder:text-text-muted border border-border focus:border-accent focus:ring-2 focus:ring-ring outline-none transition-all duration-300 disabled:opacity-50"
+            className="w-full py-4 pl-5 pr-14 rounded-2xl bg-bg-input text-text-primary placeholder:text-text-muted border border-border focus:border-accent focus:ring-2 focus:ring-ring outline-none transition-all duration-300 disabled:opacity-50 font-heading text-sm"
           />
 
+          {/* Fix 2: aria-label for search button */}
           <button
             id="search-button"
             type="submit"
             disabled={isLoading || !query.trim()}
+            aria-label={isLoading ? "Searching…" : "Search"}
             className="absolute right-2 p-2.5 rounded-xl bg-accent hover:bg-accent-hover text-white transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
           >
             {isLoading ? (

@@ -7,7 +7,7 @@ export default function ArticleList({ articles }) {
 
   return (
     <section id="article-list" className="space-y-4 w-full">
-      <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider px-1">
+      <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider px-1 font-heading">
         {articles.length} article{articles.length !== 1 ? "s" : ""} found
       </h2>
       <div className="grid gap-4">

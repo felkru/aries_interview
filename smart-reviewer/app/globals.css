@@ -1,35 +1,45 @@
 @import "tailwindcss";
 
-/* ── Design tokens ──────────────────────────────────── */
+/* ── Anthropic light-mode design tokens ────────────── */
 @theme {
-  --color-bg-primary: #0b0f1a;
-  --color-bg-secondary: #111827;
-  --color-bg-card: #1a2235;
-  --color-bg-card-hover: #1f2a40;
-  --color-bg-input: #151d2e;
-  --color-bg-badge: #1e293b;
+  /* Warm cream/pampas backgrounds */
+  --color-bg-primary: #faf9f5;
+  --color-bg-secondary: #f4f3ee;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f9f8f4;
+  --color-bg-input: #ffffff;
+  --color-bg-badge: #f0efe8;
 
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
+  /* Dark warm text */
+  --color-text-primary: #141413;
+  --color-text-secondary: #5c5a52;
+  --color-text-muted: #8c8a82;
 
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
-  --color-accent-glow: oklch(0.65 0.25 270 / 0.35);
+  /* Terracotta accent (Anthropic orange) */
+  --color-accent: #c96442;
+  --color-accent-hover: #d97757;
+  --color-accent-glow: oklch(0.62 0.16 42 / 0.18);
 
-  --color-positive: #22c55e;
-  --color-positive-bg: oklch(0.55 0.2 145 / 0.15);
-  --color-neutral-sentiment: #eab308;
-  --color-neutral-bg: oklch(0.7 0.15 85 / 0.15);
-  --color-negative: #ef4444;
-  --color-negative-bg: oklch(0.6 0.25 27 / 0.15);
+  /* Semantic colors */
+  --color-positive: #5a7a3a;
+  --color-positive-bg: oklch(0.8 0.08 140 / 0.18);
+  --color-neutral-sentiment: #a68b2a;
+  --color-neutral-bg: oklch(0.85 0.08 85 / 0.18);
+  --color-negative: #c15f3c;
+  --color-negative-bg: oklch(0.85 0.08 30 / 0.15);
 
-  --color-border: oklch(0.4 0.02 260 / 0.5);
-  --color-border-hover: oklch(0.55 0.06 270 / 0.6);
+  /* Borders — warm muted */
+  --color-border: #e8e6dc;
+  --color-border-hover: #d4d1c5;
 
-  --color-ring: oklch(0.65 0.25 270 / 0.4);
+  --color-ring: oklch(0.62 0.16 42 / 0.25);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Anthropic secondary accent */
+  --color-claude-blue: #6a9bcc;
+
+  /* Typography: use next/font CSS variables (set on <html>) */
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-lora), Georgia, ui-serif, serif;
 }
 
 /* ── Global ─────────────────────────────────────────── */
@@ -41,26 +51,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Heading font class */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ── Screen-reader only utility ────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* ── Utilities ──────────────────────────────────────── */
 .glass-card {
-  background: linear-gradient(
-    135deg,
-    oklch(0.2 0.02 260 / 0.8),
-    oklch(0.15 0.015 260 / 0.6)
-  );
-  backdrop-filter: blur(12px);
+  background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: 1rem;
+  box-shadow: 0 1px 3px oklch(0.3 0.01 50 / 0.06),
+              0 4px 16px oklch(0.3 0.01 50 / 0.04);
 }
 
 .glass-card:hover {
   border-color: var(--color-border-hover);
+  box-shadow: 0 2px 6px oklch(0.3 0.01 50 / 0.08),
+              0 8px 24px oklch(0.3 0.01 50 / 0.06);
 }
 
 .glow-ring {
   box-shadow:
     0 0 0 1px var(--color-border),
-    0 0 20px var(--color-accent-glow);
+    0 0 16px var(--color-accent-glow);
 }
 
 /* ── Custom scrollbar ───────────────────────────────── */
@@ -71,7 +98,7 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.4 0.02 260 / 0.5);
+  background: oklch(0.7 0.02 55 / 0.4);
   border-radius: 3px;
 }
 
@@ -85,8 +112,8 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 12px var(--color-accent-glow); }
-  50%      { box-shadow: 0 0 24px var(--color-accent-glow); }
+  0%, 100% { box-shadow: 0 0 10px var(--color-accent-glow); }
+  50%      { box-shadow: 0 0 20px var(--color-accent-glow); }
 }
 @keyframes spin {
   to { transform: rotate(360deg); }
@@ -104,11 +131,37 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    oklch(0.2 0.02 260 / 0.4) 25%,
-    oklch(0.3 0.02 260 / 0.4) 50%,
-    oklch(0.2 0.02 260 / 0.4) 75%
+    oklch(0.92 0.01 50 / 0.5) 25%,
+    oklch(0.88 0.01 50 / 0.5) 50%,
+    oklch(0.92 0.01 50 / 0.5) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   border-radius: 0.5rem;
+}
+
+/* ── Toast notification ────────────────────────────── */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes toast-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(12px) scale(0.95); }
+}
+
+.toast-enter { animation: toast-in 0.3s ease-out both; }
+.toast-exit  { animation: toast-out 0.25s ease-in both; }
+
+/* ── Fix 5: Reduced motion guard ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-glow,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-spin,
+  .skeleton,
+  .toast-enter,
+  .toast-exit {
+    animation: none;
+  }
 }

@@ -17,7 +17,11 @@ export default function ResultsTable() {
       if (!res.ok) throw new Error(data.error || "Failed to fetch results");
       setResults(data.results || []);
     } catch (e) {
-      setError(e.message);
+      const userMessage =
+        e.message === "Failed to fetch"
+          ? "Network error — please check your connection and try again."
+          : e.message || "Something went wrong. Please try again.";
+      setError(userMessage);
     } finally {
       setLoading(false);
     }
@@ -30,7 +34,7 @@ export default function ResultsTable() {
   if (loading) {
     return (
       <section id="results-section" className="w-full space-y-3">
-        <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider px-1">
+        <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider px-1 font-heading">
           Past Analyses
         </h2>
         <div className="space-y-3">
@@ -49,8 +53,8 @@ export default function ResultsTable() {
           <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          {error}
-          <button onClick={fetchResults} className="ml-auto text-xs underline hover:no-underline">
+          <span className="flex-1">{error}</span>
+          <button onClick={fetchResults} className="text-xs underline hover:no-underline font-heading font-medium">
             Retry
           </button>
         </div>
@@ -74,12 +78,12 @@ export default function ResultsTable() {
   return (
     <section id="results-section" className="w-full space-y-3 animate-fade-in">
       <div className="flex items-center justify-between px-1">
-        <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+        <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider font-heading">
           Past Analyses ({results.length})
         </h2>
         <button
           onClick={fetchResults}
-          className="text-xs text-text-muted hover:text-accent transition-colors"
+          className="text-xs text-text-muted hover:text-accent transition-colors font-heading"
           id="refresh-results"
         >
           ↻ Refresh
@@ -91,7 +95,7 @@ export default function ResultsTable() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm" id="results-table">
             <thead>
-              <tr className="border-b border-border text-text-muted">
+              <tr className="border-b border-border text-text-muted font-heading">
                 <th className="text-left py-3 px-4 font-medium">Title</th>
                 <th className="text-left py-3 px-4 font-medium">Source</th>
                 <th className="text-left py-3 px-4 font-medium">Sentiment</th>
@@ -110,7 +114,7 @@ export default function ResultsTable() {
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-primary hover:text-accent-hover transition-colors line-clamp-2 font-medium"
+                      className="text-text-primary hover:text-accent-hover transition-colors line-clamp-2 font-medium font-heading"
                     >
                       {r.title}
                     </a>
