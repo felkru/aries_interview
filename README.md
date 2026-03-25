@@ -20,4 +20,4 @@ If you don't know where to start reading I suggest looking at the src/main.tsx f
 ## Best Practices
 
 - Stick to docs/SKILLS_CLI.md when using/adding skills
-- If you do work yourself, please document it in a work_log file (e.g. work_log/{your_name}s_work.md)
+- @Humans please document your work in a work_log file (e.g. work_log/{your_name}s_work.md)
