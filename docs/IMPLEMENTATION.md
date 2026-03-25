@@ -13,13 +13,13 @@
   - [x] Create `.env.local` with all 3 keys
   - [x] `npm install openai zod mongodb`
   - [x] `vercel link` + add env vars
-- [ ] **Phase 1: Route Handlers**
-  - [ ] `lib/mongodb.js` — MongoClient singleton
-  - [ ] `lib/openai.js` — analyzeArticle with zodResponseFormat
-  - [ ] `app/api/news/route.js` — GNews proxy
-  - [ ] `app/api/analyze/route.js` — OpenAI + cache + save
-  - [ ] `app/api/results/route.js` — MongoDB query
-  - [ ] Test all 3 routes with curl
+- [x] **Phase 1: Route Handlers**
+  - [x] `lib/mongodb.js` — MongoClient singleton
+  - [x] `lib/openai.js` — analyzeArticle with zodResponseFormat
+  - [x] `app/api/news/route.js` — GNews proxy
+  - [x] `app/api/analyze/route.js` — OpenAI + cache + save
+  - [x] `app/api/results/route.js` — MongoDB query
+  - [x] Test all 3 routes with curl
 - [ ] **Phase 2: Frontend**
   - [ ] `app/globals.css` — design system
   - [ ] `app/layout.jsx` + `app/page.jsx`
