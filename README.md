@@ -1,23 +1,43 @@
-# News sentiment analysis SPA
+# News Sentiment Analysis SPA
 
-## How to read this codebase
+## 📖 How to read this codebase
 
-If you don't know where to start reading I suggest looking at the src/main.tsx first.
+- **smart-reviewer/**: The core Next.js web application (App Router).
+- **tofu/**: OpenTofu (IaC) configuration for managing MongoDB Atlas infrastructure (Clusters, Users, IP Access).
+- **assignment/**: Context for the original assignment and agent prompts.
+- **docs/**: Comprehensive documentation of the architecture, IMPLEMENTATION.md (plan), and setup details.
+- **work_log/**: Activity logs for both humans and agents (e.g., `work_log/antigravitys_work.md`).
+- **AGENTS.md**: Operating rules for AI coding assistants.
+- **.env.example**: Reference for local environment variables.
 
-- assignment directory: contains all email context for agents and my future self
-- docs directory: details on how to use the apis, details about the architecture, etc.
-- work_log directory: contains work logs of all contributors, including my work at work_log/felixs_work.md and seperate logs for each Agent I used
-- src directory: the actual code
-- AGENTS.md: rules for all agents
-- .env: contains all API keys and credentials
-- .env.example: example of .env file and what a correct key will look like
+## 🚀 Getting Started
 
-## How to get this project up and running
+### 1. Local Application Setup
 
-1. Sign up for a MongoDB Atlas, OpenAI and GNews API key and store the keys in .env (look at .env.example for how to do it)
-2.
+- `cd smart-reviewer`
+- `npm install`
+- Copy `.env.example` into `smart-reviewer/.env.local` and add your:
+  - `MONGODB_URI`
+  - `OPENAI_API_KEY`
+  - `GNEWS_KEY`
+- Run the dev server: `npm run dev`
 
-## Best Practices
+### 2. Cloud Infrastructure (OpenTofu)
 
-- Stick to docs/SKILLS_CLI.md when using/adding skills
-- @Humans please document your work in a work_log file (e.g. work_log/{your_name}s_work.md)
+The cloud infrastructure (MongoDB Atlas) is managed declaratively. CI/CD for this is automated via GitHub Actions in `.github/workflows/tofu.yml`.
+
+#### Required GitHub Secrets
+
+To authorize the automation, add these secrets in your GitHub repository (`Settings > Secrets and variables > Actions`):
+
+| Secret Name         | Description                                |
+| ------------------- | ------------------------------------------ |
+| `ATLAS_ORG_ID`      | Your MongoDB Atlas Organization ID         |
+| `ATLAS_PUBLIC_KEY`  | MongoDB Atlas Programmatic API Public Key  |
+| `ATLAS_PRIVATE_KEY` | MongoDB Atlas Programmatic API Private Key |
+| `DB_PASSWORD`       | Password for the `appUser` database user   |
+
+## 🛠️ Best Practices
+
+- Refer to `docs/SKILLS_CLI.md` for CLI usage.
+- All contributors must document their work in a log file within the `work_log/` directory.

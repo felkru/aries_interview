@@ -20,13 +20,13 @@
   - [x] `app/api/analyze/route.js` — OpenAI + cache + save
   - [x] `app/api/results/route.js` — MongoDB query
   - [x] Test all 3 routes with curl
-- [ ] **Phase 2: Frontend**
-  - [ ] `app/globals.css` — design system
-  - [ ] `app/layout.jsx` + `app/page.jsx`
-  - [ ] `SearchBar.jsx` + `ArticleList.jsx` + `ArticleCard.jsx`
-  - [ ] `AnalysisView.jsx` (sentiment badge)
-  - [ ] `ResultsTable.jsx`
-  - [ ] `Spinner.jsx` + loading/error states
+- [x] **Phase 2: Frontend**
+  - [x] `app/globals.css` — design system
+  - [x] `app/layout.jsx` + `app/page.jsx`
+  - [x] `SearchBar.jsx` + `ArticleList.jsx` + `ArticleCard.jsx`
+  - [x] `AnalysisView.jsx` + `SentimentBadge.jsx`
+  - [x] `ResultsTable.jsx`
+  - [x] `Spinner.jsx` + loading/error states
 - [ ] **Phase 3: Deploy**
   - [ ] Verify locally with `vercel dev`
   - [ ] Push to `main` → Vercel auto-deploys

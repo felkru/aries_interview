@@ -1,19 +1,114 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Design tokens ──────────────────────────────────── */
+@theme {
+  --color-bg-primary: #0b0f1a;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #1a2235;
+  --color-bg-card-hover: #1f2a40;
+  --color-bg-input: #151d2e;
+  --color-bg-badge: #1e293b;
+
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  --color-accent: #6366f1;
+  --color-accent-hover: #818cf8;
+  --color-accent-glow: oklch(0.65 0.25 270 / 0.35);
+
+  --color-positive: #22c55e;
+  --color-positive-bg: oklch(0.55 0.2 145 / 0.15);
+  --color-neutral-sentiment: #eab308;
+  --color-neutral-bg: oklch(0.7 0.15 85 / 0.15);
+  --color-negative: #ef4444;
+  --color-negative-bg: oklch(0.6 0.25 27 / 0.15);
+
+  --color-border: oklch(0.4 0.02 260 / 0.5);
+  --color-border-hover: oklch(0.55 0.06 270 / 0.6);
+
+  --color-ring: oklch(0.65 0.25 270 / 0.4);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ── Global ─────────────────────────────────────────── */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Utilities ──────────────────────────────────────── */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    oklch(0.2 0.02 260 / 0.8),
+    oklch(0.15 0.015 260 / 0.6)
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+}
+
+.glass-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.glow-ring {
+  box-shadow:
+    0 0 0 1px var(--color-border),
+    0 0 20px var(--color-accent-glow);
+}
+
+/* ── Custom scrollbar ───────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.4 0.02 260 / 0.5);
+  border-radius: 3px;
+}
+
+/* ── Animations ─────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px var(--color-accent-glow); }
+  50%      { box-shadow: 0 0 24px var(--color-accent-glow); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in  { animation: fade-in 0.4s ease-out both; }
+.animate-slide-up { animation: slide-up 0.5s ease-out both; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-spin { animation: spin 0.8s linear infinite; }
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    oklch(0.2 0.02 260 / 0.4) 25%,
+    oklch(0.3 0.02 260 / 0.4) 50%,
+    oklch(0.2 0.02 260 / 0.4) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.5rem;
 }

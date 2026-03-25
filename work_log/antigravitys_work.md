@@ -4,3 +4,5 @@
 - 15:49 - Configured the MongoDB Atlas cluster for production by allowing access from `0.0.0.0/0`, resolving the TLS error and restoring database connections for the API routes.
 - 15:55 - Created OpenTofu Infrastructure as Code `tofu/` templates and an automated GitHub Actions CI/CD workflow `.github/workflows/tofu.yml` to manage the MongoDB Atlas cloud infrastructure state.
 - 15:59 - Generated a new MongoDB Atlas Programmatic API Key (assigned `ORG_OWNER` role) and synchronized the credentials (`ATLAS_ORG_ID`, `ATLAS_PUBLIC_KEY`, `ATLAS_PRIVATE_KEY`, `DB_PASSWORD`) to GitHub Actions secrets using the `gh` CLI.
+- 16:05 - Updated the root `README.md` to reflect the new project architecture (Next.js + OpenTofu) and documented the required GitHub secrets for the automated infrastructure pipeline.
+- 16:23 - Completed Phase 2 frontend: built design system (`globals.css`), layout, and 7 components (`SearchBar`, `ArticleList`, `ArticleCard`, `AnalysisView`, `SentimentBadge`, `ResultsTable`, `Spinner`) with dark glassmorphism theme, tab navigation, loading/error/empty states; verified end-to-end search → analyze → results table flow in browser.
