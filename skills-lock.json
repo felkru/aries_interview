@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "api-validation": {
+      "source": "brennhill/Gasoline-AI-Devtools",
+      "sourceType": "github",
+      "computedHash": "5dd10f114b8f0fe3642317ee1bffcae55b98e6140fd4f78382e2895ec45d88c2"
+    },
+    "reliability": {
+      "source": "brennhill/Gasoline-AI-Devtools",
+      "sourceType": "github",
+      "computedHash": "9fd024a2835d26708a91438784259120b123ade60a4d237403c673ecb3ea8566"
+    },
+    "ux-audit": {
+      "source": "brennhill/Gasoline-AI-Devtools",
+      "sourceType": "github",
+      "computedHash": "92916f303b122b4461a2c0face7bcf6666b5ac6af2cb0cb0294dacc86fde21da"
+    }
+  }
+}

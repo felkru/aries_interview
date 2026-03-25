@@ -1,1 +1,5 @@
 .env
+
+# remove macos related stuff
+.DS_Store
+
