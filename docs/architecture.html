@@ -479,7 +479,6 @@
       <div class="decision-q">Sentiment Strategy</div>
       <div class="decision-a">
         <strong>Single OpenAI call</strong> returns both summary and sentiment.
-        <span class="badge badge-smart">smart</span><br/>
         Prompt asks for structured JSON: <code>{ summary, sentiment, confidence }</code>.
         Zero extra API calls.
       </div>
@@ -489,7 +488,6 @@
       <div class="decision-q">Caching</div>
       <div class="decision-a">
         Before calling OpenAI, check MongoDB by article URL.
-        <span class="badge badge-perf">perf</span><br/>
         If already analyzed, return stored result instantly. Saves API quota.
       </div>
     </div>

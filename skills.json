@@ -5,6 +5,7 @@
     "ux-audit": "brennhill/Gasoline-AI-Devtools",
     "atlas": "brennhill/Gasoline-AI-Devtools",
     "common-architecture-diagramming": "brennhill/Gasoline-AI-Devtools",
-    "implementation-planning": "local"
+    "implementation-planning": "local",
+    "test-driven-development": "local"
   }
 }
