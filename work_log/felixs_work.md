@@ -5,6 +5,8 @@
 - 11:15 - 11:25: Understand which KPIs you have for this project
 - 11:25 - 11:45: Use Claude Chat to research relevant skill.md files matching these KPIs
 - 11:45 - 12:00: Install Atlas Management CLI and add relevant Skills
+- 12:00 - 12:20: Start Skills Security Review, add md version of pdf task, set up Vercel CLI
+- 12:25 - 12:30: Short break before I start implementation to reflect and relax
 
 ## What I still want to do
 
