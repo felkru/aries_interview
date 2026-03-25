@@ -19,7 +19,7 @@ export default function SearchBar({ onSearch, isLoading }) {
 
       <div className="relative group">
         {/* Glow effect behind */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/12 to-[#6a9bcc]/12 rounded-xl opacity-0 group-focus-within:opacity-100 blur-lg transition-opacity duration-500" />
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/12 to-secondary-accent/12 rounded-xl opacity-0 group-focus-within:opacity-100 blur-lg transition-opacity duration-500" />
 
         <div className="relative flex items-center">
           <input

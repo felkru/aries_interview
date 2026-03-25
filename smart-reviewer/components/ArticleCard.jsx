@@ -16,7 +16,7 @@ export default function ArticleCard({ article }) {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ article }),
+        body: JSON.stringify({ article, force: review !== null }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Analysis failed");
@@ -68,14 +68,20 @@ export default function ArticleCard({ article }) {
           </div>
         </div>
 
-        {/* Fix A7: Descriptive alt text */}
-        {article.image && (
-          <img
-            src={article.image}
-            alt={`Thumbnail for ${article.title}`}
-            className="w-20 h-14 rounded-lg object-cover shrink-0 border border-border"
-          />
-        )}
+        {/* Fix A7: Descriptive alt text + fallback for missing/broken thumbnails */}
+        <img
+          src={article.image || "/placeholder-thumb.svg"}
+          alt={`Thumbnail for ${article.title}`}
+          width={80}
+          height={56}
+          loading="lazy"
+          decoding="async"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = "/placeholder-thumb.svg";
+          }}
+          className="w-20 h-14 rounded-lg object-cover shrink-0 border border-border"
+        />
       </div>
 
       {/* Description */}

@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { analyzeArticle } from '@/lib/openai';
+import { extractArticleContent } from '@/lib/scraper';
 
 export async function POST(request) {
   try {
     const body = await request.json();
     const article = body.article;
+    const force = body.force === true;
 
     if (!article || !article.url) {
       return NextResponse.json({ error: 'Valid article object with url is required' }, { status: 400 });
@@ -15,17 +17,34 @@ export async function POST(request) {
     const db = client.db('smart-reviewer');
     const collection = db.collection('reviews');
 
-    const cachedReview = await collection.findOne({ url: article.url });
-    if (cachedReview) {
-      return NextResponse.json({ review: cachedReview });
+    // Return cached review unless force-refresh is requested
+    if (!force) {
+      const cachedReview = await collection.findOne({ url: article.url });
+      if (cachedReview) {
+        return NextResponse.json({ review: cachedReview });
+      }
+    } else {
+      // Re-analyze: delete old entry first
+      await collection.deleteMany({ url: article.url });
     }
+
+    // Scrape full article text; fall back to truncated GNews content on failure
+    const fullContent = await extractArticleContent(article.url);
+    const enrichedArticle = {
+      ...article,
+      content: fullContent || article.content,
+      _contentSource: fullContent ? 'scraped' : 'api',
+    };
 
     let analysis;
     try {
-      analysis = await analyzeArticle(article);
+      analysis = await analyzeArticle(enrichedArticle);
     } catch (e) {
       console.error('OpenAI analysis error:', e);
-      return NextResponse.json({ error: 'Analysis failed or refused' }, { status: 422 });
+      const message = e.message?.includes('non-English')
+        ? 'Analysis could not produce an English summary. Please try again.'
+        : 'Analysis failed or refused';
+      return NextResponse.json({ error: message }, { status: 422 });
     }
 
     const newReview = {
@@ -35,9 +54,11 @@ export async function POST(request) {
       url: article.url,
       title: article.title,
       source: article.source?.name,
+      image: article.image || null,
       publishedAt: article.publishedAt,
       description: article.description,
-      content: article.content,
+      content: enrichedArticle.content,
+      contentSource: enrichedArticle._contentSource,
       analyzedAt: new Date().toISOString()
     };
 

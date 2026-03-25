@@ -23,7 +23,10 @@ export default function HomePage() {
   const [hasSearched, setHasSearched] = useState(false);
   const [activeTab, setActiveTab] = useState("search");
   const [resultCount, setResultCount] = useState(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [activeTopic, setActiveTopic] = useState(null);
   const lastQueryRef = useRef("");
+  const didAutoSearch = useRef(false);
 
   // Fetch count for tab badge on mount
   useEffect(() => {
@@ -35,18 +38,35 @@ export default function HomePage() {
           setResultCount(data.results.length);
         }
       } catch {
-        // silently ignore — badge just won't show
+        setResultCount(0);
       }
     }
     fetchCount();
   }, []);
 
-  async function handleSearch(query) {
+  // Auto-search a random topic on first load
+  useEffect(() => {
+    if (didAutoSearch.current) return;
+    didAutoSearch.current = true;
+    const topic = QUICK_TOPICS[Math.floor(Math.random() * QUICK_TOPICS.length)];
+    setActiveTopic(topic);
+    handleSearch(topic, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function handleSearch(query, fromTopic = false) {
     lastQueryRef.current = query;
     setSearchLoading(true);
     setSearchError(null);
     setHasSearched(true);
+    setHasInteracted(true);
     setActiveTab("search");
+    // Track which topic chip is active (clear if manual search)
+    if (fromTopic) {
+      setActiveTopic(query);
+    } else {
+      setActiveTopic(null);
+    }
     try {
       const res = await fetch(`/api/news?q=${encodeURIComponent(query)}`);
       const data = await res.json();
@@ -122,6 +142,7 @@ export default function HomePage() {
                 aria-selected={activeTab === "results"}
                 aria-controls="panel-results"
                 onClick={() => {
+                  setHasInteracted(true);
                   setActiveTab("results");
                   fetch("/api/results?count=1")
                     .then((r) => r.json())
@@ -136,17 +157,20 @@ export default function HomePage() {
               >
                 <span className="hidden sm:inline">Past Analyses</span>
                 <span className="sm:hidden">History</span>
-                {resultCount !== null && resultCount > 0 && (
-                  <span
-                    className={`inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 text-xs font-semibold rounded-full transition-colors ${
-                      activeTab === "results"
-                        ? "bg-white/20 text-white"
-                        : "bg-accent/15 text-accent"
-                    }`}
-                  >
-                    {resultCount}
-                  </span>
-                )}
+                {/* Always reserve space for badge — skeleton while loading, invisible when 0 */}
+                <span
+                  className={`inline-flex items-center justify-center min-w-[1.75rem] h-5 px-1.5 text-xs font-semibold rounded-full transition-colors ${
+                    resultCount === null
+                      ? "skeleton"
+                      : resultCount === 0
+                        ? "invisible"
+                        : activeTab === "results"
+                          ? "bg-white/20 text-white"
+                          : "bg-accent/15 text-accent"
+                  }`}
+                >
+                  {resultCount === null ? "\u00A0" : resultCount}
+                </span>
               </button>
             </nav>
           </div>
@@ -158,9 +182,13 @@ export default function HomePage() {
               {QUICK_TOPICS.map((topic) => (
                 <button
                   key={topic}
-                  onClick={() => handleSearch(topic)}
+                  onClick={() => handleSearch(topic, true)}
                   disabled={searchLoading}
-                  className="shrink-0 px-3 py-1 text-xs font-medium rounded-full border border-border bg-bg-card hover:bg-bg-card-hover hover:border-accent/30 text-text-secondary hover:text-accent transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed font-heading"
+                  className={`shrink-0 px-3 py-1 text-xs font-medium rounded-full border transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed font-heading ${
+                    activeTopic === topic
+                      ? "bg-accent/15 border-accent/40 text-accent"
+                      : "border-border bg-bg-card hover:bg-bg-card-hover hover:border-accent/30 text-text-secondary hover:text-accent"
+                  }`}
                 >
                   {topic}
                 </button>
@@ -180,7 +208,7 @@ export default function HomePage() {
           hidden={activeTab !== "search"}
         >
           {activeTab === "search" && (
-            <div className="space-y-6 animate-fade-in">
+            <div className={`space-y-6${hasInteracted ? ' animate-fade-in' : ''}`}>
               {/* Loading state */}
               {searchLoading && (
                 <div className="space-y-4">
@@ -225,9 +253,9 @@ export default function HomePage() {
                 </>
               )}
 
-              {/* Initial state */}
+              {/* Initial state — no animation to avoid CLS on first load */}
               {!hasSearched && (
-                <div className="text-center py-20 animate-fade-in">
+                <div className="text-center py-20">
                   <div className="inline-flex flex-col items-center gap-4 text-text-muted">
                     <svg className="w-14 h-14 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />

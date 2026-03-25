@@ -6,12 +6,14 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 export const metadata = {

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ── Anthropic light-mode design tokens ────────────── */
+/* ── Light-mode design tokens ─────────────────────── */
 @theme {
   /* Warm cream/pampas backgrounds */
   --color-bg-primary: #faf9f5;
@@ -15,10 +15,10 @@
   --color-text-secondary: #5c5a52;
   --color-text-muted: #8c8a82;
 
-  /* Terracotta accent (Anthropic orange) */
-  --color-accent: #c96442;
-  --color-accent-hover: #d97757;
-  --color-accent-glow: oklch(0.62 0.16 42 / 0.18);
+  /* Chambray accent */
+  --color-accent: #5B7D9E;
+  --color-accent-hover: #6E8FB0;
+  --color-accent-glow: oklch(0.58 0.08 240 / 0.18);
 
   /* Semantic colors */
   --color-positive: #5a7a3a;
@@ -32,10 +32,10 @@
   --color-border: #e8e6dc;
   --color-border-hover: #d4d1c5;
 
-  --color-ring: oklch(0.62 0.16 42 / 0.25);
+  --color-ring: oklch(0.58 0.08 240 / 0.25);
 
-  /* Anthropic secondary accent */
-  --color-claude-blue: #6a9bcc;
+  /* Secondary accent */
+  --color-secondary-accent: #6a9bcc;
 
   /* Typography: use next/font CSS variables (set on <html>) */
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
@@ -51,9 +51,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Heading font class */
+/* Prevent layout shift from font swap by stabilising line heights */
+h1, h2, h3, h4, h5, h6,
 .font-heading {
   font-family: var(--font-heading);
+  line-height: 1.35;          /* fixed line-height so swap doesn't shift */
 }
 
 /* ── Screen-reader only utility ────────────────────── */
