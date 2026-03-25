@@ -1,6 +1,6 @@
 # Smart Reviewer — Implementation Plan
 
-> News sentiment analysis SPA: Next.js (App Router), MongoDB Atlas, GNews, OpenAI.
+> News sentiment analysis SPA: Next.js (App Router), Tailwind CSS, MongoDB Atlas, GNews, OpenAI.
 > Full [assignment](../assignment/assignment.md) · [architecture](./architecture.html) for layer diagram and MongoDB schema.
 
 ---
@@ -137,7 +137,7 @@ smart-reviewer/
 ├── app/                         ──── Next.js App Router ────
 │   ├── layout.jsx               # [NEW] root layout, metadata, fonts
 │   ├── page.jsx                 # [NEW] main page
-│   ├── globals.css              # [NEW] design tokens + styles
+│   ├── globals.css              # [NEW] Tailwind directives + global styles
 │   └── api/                     ──── Route Handlers ────
 │       ├── news/route.js        # [NEW] GET → proxy to GNews
 │       ├── analyze/route.js     # [NEW] POST → OpenAI + Mongo
@@ -252,7 +252,7 @@ const result = completion.choices[0].message.parsed;
 
 | Step | Detail |
 | --- | --- |
-| `npx create-next-app@latest ./` | App Router, no Tailwind (vanilla CSS), JS |
+| `npx create-next-app@latest ./` | App Router, Tailwind CSS, JS |
 | Atlas CLI | Create cluster, get connection string |
 | `.env.local` | `MONGODB_URI`, `OPENAI_API_KEY`, `GNEWS_KEY` |
 | `vercel link` | Link to Vercel, add env vars |
