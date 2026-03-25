@@ -1,0 +1,23 @@
+Hi Felix,
+
+Thank you for taking the time to speak with Mohammad; we have thoroughly enjoyed getting to know you during the interview process :)
+
+As a next step, we'd like for you to complete the attached case study. An OpenAI API key is included in this document (i already put this into the .env) to assist you. The submission deadline is Friday the 27th at 8:00 PM. If you require more time due to other commitments please let me know and I'll adjust the deadline.
+
+You are welcome to use AI tools to support your work. However, please note that the follow-up review with Nicholas (CC'd here) will focus on an in-depth assessment of your coding ability and technical understanding.
+
+Once you have submitted the case study, Nicholas will reach out to schedule the review. Please let us know if you have any questions/doubts.
+
+Best,
+
+Laura Zecca
+
+Aries Global Software
+1 Maple Place
+London, W1T 4BB
+
+E: laura@aries.global 
+M: +44 7492 831623
+W: www.aries.global
+
+[Attached Case Study]
