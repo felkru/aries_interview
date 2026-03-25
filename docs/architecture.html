@@ -308,7 +308,7 @@
 <body>
 
   <h1>Smart Reviewer — System Architecture</h1>
-  <p class="subtitle">React SPA · Express API · MongoDB · GNews · OpenAI</p>
+  <p class="subtitle">Next.js (App Router) · Vercel · MongoDB Atlas · GNews · OpenAI</p>
 
   <!-- ══════════════════ LAYER DIAGRAM ══════════════════ -->
 
@@ -318,7 +318,7 @@
     <div class="layer-row">
       <div class="layer-label">Frontend</div>
       <div class="layer-content layer-frontend">
-        <div class="layer-title">React SPA (Vite) — runs in the browser</div>
+        <div class="layer-title">Next.js Client Components — runs in the browser</div>
         <div class="cards">
           <div class="card card-frontend">
             <div class="card-name">🔍 Search Panel</div>
@@ -333,7 +333,7 @@
             <div class="card-desc">Shows AI summary + sentiment badge (positive / neutral / negative) for selected article.</div>
           </div>
           <div class="card card-frontend">
-            <div class="card-name">📋 Reviews Table</div>
+            <div class="card-name">📋 Results Table</div>
             <div class="card-desc">Persistent table of all previously analyzed articles pulled from MongoDB.</div>
           </div>
         </div>
@@ -352,7 +352,7 @@
     <div class="layer-row">
       <div class="layer-label">Backend</div>
       <div class="layer-content layer-backend">
-        <div class="layer-title">Node.js + Express — API server</div>
+        <div class="layer-title">Next.js Route Handlers — runs on Vercel</div>
         <div class="cards">
           <div class="card card-backend">
             <div class="card-name">GET /api/news</div>
@@ -363,8 +363,8 @@
             <div class="card-desc">Accepts article. Calls OpenAI once for both summary + sentiment. Saves to MongoDB.</div>
           </div>
           <div class="card card-backend">
-            <div class="card-name">GET /api/reviews</div>
-            <div class="card-desc">Returns all analyzed articles from MongoDB for the reviews table.</div>
+            <div class="card-name">GET /api/results</div>
+            <div class="card-desc">Returns all analyzed articles from MongoDB for the results table.</div>
           </div>
         </div>
       </div>
@@ -426,7 +426,7 @@
         <div class="flow-title">Search for articles</div>
         <div class="flow-steps">
           User types a topic → React calls <code>GET /api/news?q=topic</code> →
-          Express calls GNews.io → Returns list of articles → React renders the list
+          Route handler calls GNews.io → Returns list of articles → React renders the list
         </div>
       </div>
     </div>
@@ -437,8 +437,8 @@
         <div class="flow-title">Analyze an article</div>
         <div class="flow-steps">
           User clicks "Analyze" → React calls <code>POST /api/analyze</code> with article data →
-          Express checks MongoDB (skip AI if already cached) →
-          If new: single OpenAI call returns <code>{ summary, sentiment, score }</code> →
+          Route handler checks MongoDB (skip AI if already cached) →
+          If new: single OpenAI call returns <code>{ summary, sentiment, confidence }</code> →
           Saved to MongoDB → Result returned to frontend → Displayed inline
         </div>
       </div>
@@ -447,11 +447,11 @@
     <div class="flow flow-3">
       <div class="flow-number">3</div>
       <div class="flow-body">
-        <div class="flow-title">View all past reviews</div>
+        <div class="flow-title">View all stored results</div>
         <div class="flow-steps">
-          React calls <code>GET /api/reviews</code> on load →
-          Express queries MongoDB → Returns all stored reviews →
-          Rendered in the Reviews Table (title, source, sentiment, summary snippet, date)
+          React calls <code>GET /api/results</code> on load →
+          Route handler queries MongoDB → Returns all stored results →
+          Rendered in the Results Table (title, source, sentiment, summary snippet, date)
         </div>
       </div>
     </div>
@@ -505,8 +505,8 @@
     <div class="decision">
       <div class="decision-q">Project Structure</div>
       <div class="decision-a">
-        <strong>Monorepo</strong>: <code>/client</code> (React + Vite) and
-        <code>/server</code> (Express) in one repo. Simple to run and review.
+        <strong>Next.js App Router</strong>: frontend and API route handlers
+        in one project. Deployed to <strong>Vercel</strong> via GitHub CI/CD.
       </div>
     </div>
 
@@ -514,7 +514,7 @@
 
   <!-- ══════════════════ MONGODB SCHEMA ══════════════════ -->
 
-  <p class="section-title">MongoDB Document Schema — <code>reviews</code> collection</p>
+  <p class="section-title">MongoDB Document Schema — <code>results</code> collection</p>
   <div class="schema-box">
     <span class="note">{</span><br/>
     &nbsp;&nbsp;<span class="key">_id</span>:        <span class="type">ObjectId</span>,         <span class="note">// auto-generated</span><br/>
